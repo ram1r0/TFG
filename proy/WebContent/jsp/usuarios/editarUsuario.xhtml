@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../templates/main.xhtml">
+	
+	<ui:define name="content">
+	
+	<f:metadata>
+           <f:viewParam name="user"/>
+           <f:event type="preRenderView" listener="#{usuariosBean.init}" />
+   </f:metadata>
+	
+	<f:view>
+		<h:form id="editar_usuario" enctype="multipart/form-data">
+			
+			<h1 class="titulo_pag"><h:outputText value="#{usuariosBean.usuarioDTO.id == null ? 'Nuevo usuario' : usuariosBean.usuarioDTO.nombre}"/></h1>
+			
+			<p:messages showDetail="false"/> 
+			
+			<div class="formulario_etiqueta">Usuario</div>
+			<p:inputText id="Usuario" required="true" value="#{usuariosBean.usuarioDTO.usuario}" size="40" />
+			
+			<div class="formulario_etiqueta">Nombre </div>
+			<p:inputText id="Nombre" required="true" value="#{usuariosBean.usuarioDTO.nombre}" size="40"/>
+			
+			<div class="formulario_etiqueta">Clave </div>
+			<p:password weakLabel="Poco seguro" goodLabel="Medio seguro" strongLabel="Muy seguro" promptLabel="Introduzca una clave" redisplay="true" required="true" id="Clave" value="#{usuariosBean.usuarioDTO.clave}" size="40" feedback="true"/>
+			
+			<div class="formulario_etiqueta">Tel&#233;fono </div>
+			<p:inputText value="#{usuariosBean.usuarioDTO.telefono}" size="40"/>
+			
+			<div class="formulario_etiqueta">Despacho</div>
+			<p:inputText value="#{usuariosBean.usuarioDTO.despacho}" size="20"/>
+			
+			<div class="formulario_etiqueta">Correo</div>
+			<p:inputText value="#{usuariosBean.usuarioDTO.email}" size="40"/>
+			
+			<div class="formulario_etiqueta">Tutor&#237;as</div>
+			<p:inputText value="#{usuariosBean.usuarioDTO.tutorias}" size="40"/>
+			
+			<div class="formulario_etiqueta">Actividad investigadora</div>
+			<p:editor id="investig" value="#{usuariosBean.usuarioDTO.investigadora}"  maxLength="2000" />
+			
+			<div class="formulario_etiqueta">Foto</div>
+			<h:graphicImage value="/verFoto?foto=#{usuariosBean.usuarioDTO.id}" height="200" width="200"/>
+			<br/>
+			<p:fileUpload value="#{usuariosBean.foto}" mode="simple"/>			
+			
+			<br></br><br></br>
+			<h:commandButton actionListener="#{usuariosBean.upload}" action="#{usuariosBean.guardarUsuario}" includeViewParams="true" value="Guardar">
+				<f:param name="user" value="#{usuariosBean.usuarioDTO.id}" />
+			</h:commandButton>
+		</h:form>
+		
+		</f:view>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,90 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../templates/main.xhtml">
+	
+	<ui:define name="content">
+	
+	<f:metadata>
+           <!--  viewParam name="user"/>-->
+            <!--event type="preRenderView" listener="#{usuariosBean.init}" />-->
+   </f:metadata>
+	
+	<f:view>
+	
+	<h1 class="titulo_pag">Profesores</h1>
+		
+		<t:div rendered="#{sessionBean.admin}" styleClass="objeto_nuevo">
+			<h:outputLink value="/proy/jsp/usuarios/editarUsuario.jsf">Nuevo profesor >></h:outputLink>			
+		</t:div>
+	
+		<h:form>
+			<t:dataTable forceId="false" style="width:70%;margin:0 auto;" id="tablaUsuarios" var="varUsuario" value="#{listaUsuariosBean.usuarios}" rows="100" styleClass="tabla-defecto #{empty listaUsuariosBean.usuarios ? 'tabla-vacia':''}">
+				<t:column 
+					headertitle="Nombre" sortable="true"
+					sortPropertyName="nombre" width="40%" style="text-align:left;">
+					<f:facet name="header">
+						<t:commandSortHeader
+							columnName="Nombre"
+							propertyName="nombre">
+							<h:outputText value="Nombre"/>
+	        				<h:graphicImage url="/img/sort_header.png" styleClass="sort-img" alt="ordenar"/>
+						</t:commandSortHeader>
+					</f:facet>
+					<h:outputLink value="/proy/jsp/usuarios/verUsuario.jsf">
+						<h:outputText value="#{varUsuario.nombre}" />
+						<f:param name="user" value="#{varUsuario.id}"/>
+					</h:outputLink>
+				</t:column>
+				<t:column 
+					headertitle="Tel&#233;fono" sortable="true"
+					sortPropertyName="telefono" width="10%" style="text-align:left;">
+					<f:facet name="header">
+						<t:commandSortHeader
+							columnName="Tel&#233;fono"
+							propertyName="telefono">
+							<h:outputText value="Tel&#233;fono"/>
+	        				<h:graphicImage url="/img/sort_header.png" styleClass="sort-img" alt="ordenar"/>
+						</t:commandSortHeader>
+					</f:facet>
+					<h:outputText value="#{varUsuario.telefono}"/>
+				</t:column>
+				<t:column 
+					headertitle="Despacho" sortable="true"
+					sortPropertyName="despacho" width="10%" style="text-align:left;">
+					<f:facet name="header">
+						<t:commandSortHeader
+							columnName="Despacho"
+							propertyName="despacho">
+							<h:outputText value="Despacho"/>
+	        				<h:graphicImage url="/img/sort_header.png" styleClass="sort-img" alt="ordenar"/>
+						</t:commandSortHeader>
+					</f:facet>
+					<h:outputText value="#{varUsuario.despacho}"/>
+				</t:column>
+				<t:column 
+					headertitle="Tutoria" sortable="false"
+					sortPropertyName="titulo" style="text-align:center;">
+					<h:outputLink value="/proy/jsp/tutor/tutoriaSol.jsf">
+						<h:outputText value="Solicitar tutoria" />
+						<f:param name="user" value="#{varUsuario.id}"/>
+					</h:outputLink>
+				</t:column>
+				<t:column 
+					headertitle="Editar" sortable="false"
+					sortPropertyName="titulo" style="text-align:center;" rendered="#{sessionBean.admin}">
+					<h:outputLink value="/proy/jsp/usuarios/editarUsuario.jsf">
+						<h:outputText value="Editar" />
+						<f:param name="user" value="#{varUsuario.id}"/>
+					</h:outputLink>
+				</t:column>
+			</t:dataTable>
+		</h:form>
+		
+		</f:view>
+	</ui:define>
+</ui:composition>

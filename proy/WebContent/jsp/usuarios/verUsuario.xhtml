@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../templates/main.xhtml">
+	
+	<ui:define name="content">
+	
+	<f:metadata>
+           <f:viewParam name="user"/>
+            <f:event type="preRenderView" listener="#{verUsuarioBean.init}" />
+   </f:metadata>
+	
+	<f:view>
+
+		<h1 class="titulo_pag"><h:outputText value="#{verUsuarioBean.usuarioDTO.id == null ? 'Nuevo usuario' : verUsuarioBean.usuarioDTO.nombre}"/></h1>
+		
+		<div class="columnas">
+			<div class="col_left">
+				<table class="tabla-defecto tabla-defecto-izq" style="width:500px;">
+				<THEAD>
+					<TR>
+						<td colspan="2"><h3>Datos Personales</h3></td>
+					</TR>
+				</THEAD> 
+				<TBODY>
+					<tr>
+						<td>Categor&#237;a</td>
+						<td>dfd</td>
+					</tr>
+					<tr>
+						<td>Tel&#233;fono</td>
+						<td>#{verUsuarioBean.usuarioDTO.telefono}</td>
+					</tr>
+					<tr>
+						<td>Despacho</td>
+						<td>#{verUsuarioBean.usuarioDTO.despacho}</td>
+					</tr>
+					<tr>
+						<td>Correo</td>
+						<td>#{verUsuarioBean.usuarioDTO.email}</td>
+					</tr>
+				</TBODY>
+			</table>
+			
+			<t:div styleClass="cont_separador" rendered="#{not empty verUsuarioBean.usuarioDTO.asignaturas}">
+				<h3>Actividad docente</h3>
+				<t:dataList layout="unorderedList" value="#{verUsuarioBean.usuarioDTO.asignaturas}" var="subj">
+			    	<h:outputLink value="/proy/jsp/asignaturas/verAsignatura.jsf">
+							<h:outputText value="#{subj.nombre}" />
+							<f:param name="subj" value="#{subj.id}"/>
+						</h:outputLink> 
+						<br/>
+				</t:dataList>
+			</t:div>
+			
+			<t:div styleClass="cont_separador" rendered="#{not empty verUsuarioBean.usuarioDTO.investigadora}">				
+				<h3>Actividad investigadora</h3>
+				<p><h:outputText value="#{verUsuarioBean.usuarioDTO.investigadora}" escape="false"/></p>
+			</t:div>
+			
+			<t:div styleClass="cont_separador" rendered="#{not empty verUsuarioBean.usuarioDTO.cv}">				
+				<h3>Curriculum Vitae</h3>
+				<p><h:outputLink value="/proy/jsp/usuarios/verCV.jsf">
+							<h:outputText value="Ir a Curriculum Vitae >>" />
+							<f:param name="user" value="#{verUsuarioBean.usuarioDTO.id}"/>
+						</h:outputLink> 
+				</p>
+			</t:div>
+		</div>
+			
+		
+		<div class="col_right">
+		     <h:graphicImage value="/verFoto?foto=#{verUsuarioBean.usuarioDTO.id}" height="200" width="200"/><BR />
+			<div style="margin-top: 10px;"><h:outputText value="#{verUsuarioBean.usuarioDTO.id == null ? 'Nuevo usuario' : verUsuarioBean.usuarioDTO.nombre}"/></div>
+		</div>
+		
+		</div>
+			
+		</f:view>
+	</ui:define>
+</ui:composition>

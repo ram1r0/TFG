@@ -1,0 +1,1 @@
+<% response.sendRedirect("/proy/jsp/home/login.jsf"); %>

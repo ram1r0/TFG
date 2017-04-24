@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<f:view contentType="text/html">
+
+	<h:head>
+		<ui:include src="head.xhtml"/>
+	</h:head>
+	
+	<ui:insert name="init"/>
+	
+	<!-- Body -->
+	<h:body>
+		
+		<div id="main-body">
+			<!-- Cabecera -->
+			<div id="cabecera">
+				<!-- Logo -->
+				<div id="logo">
+					<div id="logo-rs">
+						<!-- Informacion del usuario -->
+						<t:div id="user-info" rendered="#{sessionScope._usuario.nombre != null}">
+							<span>Usuario:</span> #{sessionScope._usuario.nombre}
+						</t:div>
+					</div>
+				</div>
+			</div>
+			
+			<ui:insert name="init"/>
+							
+			<!-- Pestanyas -->
+			<ui:include src="tabs.xhtml"/>
+			<!-- Fin pestanyas -->
+			
+			<ui:insert name="submenu"/>
+			
+			<ui:insert name="migas"/>
+		
+			<!-- Titulo -->
+			<div id="cabecera-titulo">
+				<ui:insert name="titulo"/>
+				<div class="separador"/>
+			</div>
+			
+			<ui:insert name="titulo-inferior"/>
+		
+			<!-- Contenido -->
+			<div id="contenido" style="afloat:right;awidth:300px;">
+				<ui:insert name="content">...</ui:insert>
+				<div class="separador"/>
+			</div>
+			
+			<div style="display:none;width:600px;margin:0 auto;">
+				<div style="float:left;width:300px;">
+				</div>
+			</div>
+			
+			<div id="footer-push"/>
+		</div>
+		
+		<!-- Footer -->
+		<ui:include src="footer.xhtml"/>
+	</h:body>
+	
+	<p:dialog id="welcome" rendered="#{requestScope.mostrarMensaje}" header="Bienvenido" widgetVar="welcome" modal="true" height="70" width="200">  
+	    <h:outputText value="Bienvenido #{sessionBean.usuario.nombre}" rendered="#{!sessionBean.admin}"/>  
+	    <h:outputText value="Acceso administrador" rendered="#{sessionBean.admin}"/>  
+	</p:dialog> 
+
+	<script type="text/javascript">
+	function fwelcome(){
+		if(typeof welcome != "undefined"){
+			PF('welcome').show();
+		}
+	}
+	
+	$( document ).ready(function() {
+		fwelcome();
+		});
+	</script>	
+</f:view>
+</html>

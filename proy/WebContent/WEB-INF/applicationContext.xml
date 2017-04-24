@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- Configuracion -->
+	<bean id="configuracion"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		scope="singleton">
+		<property name="location" value="/WEB-INF/conf.properties" />
+	</bean>
+	
+	<!-- Log4j -->
+	<bean id="log4jInitializer"	class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod" value="org.springframework.util.Log4jConfigurer.initLogging" />
+		<property name="arguments">
+			<list>
+				<value>classpath:${log4j.url}</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Persistence Unit -->
+	<bean id="proyDS" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="org.h2.Driver" />
+		<property name="jdbcUrl" value="jdbc:h2:file:C:\OLD_C DRIVE\proy\db" />
+		<property name="user" value="sa" />
+		<property name="password" value="" />
+
+		<!-- c3p0 -->
+		<property name="minPoolSize" value="1" />
+		<property name="maxPoolSize" value="20" />
+		<property name="checkoutTimeout" value="180000" />
+		<property name="idleConnectionTestPeriod" value="20" />
+		<property name="maxIdleTime" value="2000" />
+		<property name="maxStatements" value="20" />
+	</bean>
+
+	<!-- Session factory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="proyDS" />
+		<property name="annotatedClasses">
+			<list>
+				<value>es.unir.web.dto.UsuarioDTO</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="connection.pool_size">1</prop>
+				<!-- SQL dialect -->
+				<prop key="dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
+				<!-- Enable Hibernate's automatic session context management -->
+				<prop key="current_session_context_class">thread</prop>
+				<!-- Disable the second-level cache -->
+				<prop key="cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+				<!-- Echo all executed SQL to stdout -->
+				<prop key="show_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+
+			</props>
+		</property>
+	</bean>
+	
+
+	<!-- DAOs de negocio -->
+	<bean id="usuarioDAO" class="es.unir.web.dao.UsuarioDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+</beans>

@@ -1,0 +1,49 @@
+.agenda-table {
+	width: 100%;
+}
+
+.agenda-table td,.agenda-table th {
+	border: 1px solid #4297D7;
+	width: 122px;
+}
+
+.agenda-first-col {
+	width: 70px !important;
+	padding-left: 5px;
+	height: 25px;
+}
+
+.agenda-main {
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	height: 600px;
+}
+
+.agenda-cabecera {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.agenda-cabecera-izq {
+	width: 25%;
+}
+
+.agenda-cabecera-der {
+	text-align: right;
+	width: 25%;
+}
+
+.agenda-cabecera-cen {
+	text-align: center;
+	width: 50%;
+}
+
+.agenda-col-sel {
+	width: 95%;
+	height: 22px;
+	margin-left: 2.5%;
+	background-color: #4297D7;
+	color:white;
+	font-size: 0.8em;
+}
