@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../templates/main.xhtml">
+	
+	<ui:define name="content">
+	
+	<f:metadata>
+          <f:event type="preRenderView" listener="#{nuevoIR21Bean.init}" />
+           <f:viewParam name="doc"/>
+   </f:metadata>
+	
+	<f:view>
+	
+		<h1 class="titulo_pag"><h:outputText value="Importar IR21"/></h1>
+		
+		<h:form id="editar_documento" enctype="multipart/form-data">
+			
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+			
+			<table class="tabla_form" cellpadding="5" style="width:100%">
+				<tr>
+					<th width="20%">
+						<div class="formulario_etiqueta">Fichero</div>
+					</th>
+					<th>
+						<p:fileUpload value="#{nuevoIR21Bean.documento}" mode="simple" skinSimple="true"/>
+					</th>		
+				</tr>	
+					<tr>
+						<th>
+							<div class="formulario_etiqueta">Pais</div>
+						</th>
+						<td>
+							<p:selectOneMenu value="#{nuevoIR21Bean.pais}">
+								<f:selectItem itemLabel="Seleccionar"/>
+				           	 	<f:selectItems  value="#{nuevoIR21Bean.paises}" />
+							</p:selectOneMenu>	
+						</td>
+					</tr>
+					
+					<tr>
+						<th>
+						<div class="formulario_etiqueta">Operadora</div>
+					</th>
+						<td>
+							<p:inputText value="#{nuevoIR21Bean.operadora}" size="50"></p:inputText>
+						</td>
+					</tr>
+				
+			</table> 
+			<p:commandButton ajax="false"  action="#{nuevoIR21Bean.guardarDocumento}" includeViewParams="true" value="Procesar">
+					</p:commandButton>
+		</h:form>
+		
+		</f:view>
+	</ui:define>
+</ui:composition>

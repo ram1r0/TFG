@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../templates/main.xhtml">
+	
+	<ui:define name="content">
+	
+	<f:metadata>
+           <f:viewParam name="doc"/>
+   </f:metadata>
+	
+	<f:view>
+		<h:form id="editar_documento" enctype="multipart/form-data">
+			
+			<p:messages showDetail="false"/> 
+			
+			
+			<div class="formulario_etiqueta">Fichero</div>
+			<br/>
+			<p:fileUpload value="#{mainBean.documento}" mode="simple"/>			
+			
+			<br/><br/><br/><br/><br/><br/><br/><br/>
+			<h:commandButton actionListener="#{mainBean.upload}" action="#{mainBean.guardarDocumento}" includeViewParams="true" value="Guardar">
+			</h:commandButton>
+		</h:form>
+		
+		</f:view>
+	</ui:define>
+</ui:composition>

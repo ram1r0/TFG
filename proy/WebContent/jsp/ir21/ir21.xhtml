@@ -1,0 +1,195 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="../../templates/main.xhtml">
+	
+	<ui:define name="content">
+	
+	<f:metadata>
+          <f:viewParam name="ir21"/>
+          <f:event type="preRenderView" listener="#{ir21Bean.init}" />
+    </f:metadata>
+	
+	<f:view>
+	
+		<h1 class="titulo_pag"><h:outputText value="IR21"/></h1>
+		
+		<p:messages showDetail="true"/>
+		
+		<h:form rendered="#{!ir21Bean.guardado}">
+		
+			<p:commandButton ajax="false" action="#{ir21Bean.guardarIR21}" includeViewParams="true" value="Guardar">
+			</p:commandButton>
+		
+		</h:form>
+		
+		<h:form rendered="#{ir21Bean.guardado}">
+			
+			<p:commandButton ajax="false" icon="ui-icon-close" action="#{ir21Bean.guardarIR21}" includeViewParams="true" value="Eliminar">
+			</p:commandButton>
+			
+			<p:commandButton ajax="false" icon="ui-icon-arrowthickstop-1-s" action="#{ir21Bean.guardarIR21}" includeViewParams="true" value="Descargar">
+			</p:commandButton>
+			
+			<p:commandButton ajax="false" icon="ui-icon-folder-open" action="#{ir21Bean.guardarIR21}" includeViewParams="true" value="Exportar">
+			</p:commandButton>
+		
+		</h:form>
+		
+		<t:htmlTag value="div" rendered="#{ir21Bean.tadig != null}">
+		
+		<div class="titulo_ir21">RAEX IR. 21 Information </div>
+	
+		<table class="tabla_ir21">
+			<tr>
+				<th width="30%" class="leyenda">
+					Creation date:
+				</th>
+				<th  width="70%"><h:outputText value="#{ir21Bean.tadig.RAEXIR21FileHeader.fileCreationTimestamp}"/></th>
+			</tr>
+			<tr>
+				<td width="30%" class="leyenda">
+					TADIG-GEN schema version:
+				</td>
+				<td  width="70%"><h:outputText value="#{ir21Bean.tadig.RAEXIR21FileHeader.TADIGRAEXIR21SchemaVersion}"/></td>
+			</tr>
+		</table>
+		
+		<div class="titulo_ir21">Organisation information </div>
+		
+		<table class="tabla_ir21">
+			<tr>
+				<th width="30%" class="leyenda">
+					Country:
+				</th>
+				<th  width="70%"><h:outputText value="#{ir21Bean.tadig.organisationInfo.countryInitials}"/></th>
+			</tr>
+			<tr>
+				<td width="30%" class="leyenda">
+					Organisation
+				</td>
+				<td  width="70%"><h:outputText value="#{ir21Bean.tadig.organisationInfo.organisationName}"/></td>
+			</tr>
+		</table>
+		
+		<div class="titulo_ir21">TADIG</div>
+		
+		<c:forEach var="network" items="#{ir21Bean.tadig.organisationInfo.networkList.network}">
+			
+			<table class="tabla_ir21">
+				<tr>
+					<th width="30%" class="leyenda">
+						TADIG:
+					</th>
+					<th  width="70%"><h:outputText value="#{network.TADIGCode}"/></th>
+				</tr>
+				<tr>
+					<td width="30%" class="leyenda">
+						Network Type
+					</td>
+					<td  width="70%"><h:outputText value="#{network.networkType}"/></td>
+				</tr>
+				
+				<tr>
+					<td width="30%" class="leyenda">
+						Presentation of country initials and MNN:
+					</td>
+					<td  width="70%"><h:outputText value="#{network.presentationOfCountryInitialsAndMNN}"/></td>
+				</tr>
+				
+				<tr>
+					<td width="30%" class="leyenda">
+						Abbreviated MNN:
+					</td>
+					<td  width="70%"><h:outputText value="#{network.abbreviatedMNN}"/></td>
+				</tr>
+				
+				<tr>
+					<td width="30%" class="leyenda">
+						Network colour code:
+					</td>
+					<td  width="70%"><h:outputText value="#{network.networkColourCode}"/></td>
+				</tr>
+			</table>
+			
+			
+			<div class="titulo_ir21">Routing Information</div>
+			
+				<table class="tabla_ir21">
+					<tr>
+						<th width="30%" class="leyenda">
+							Effective date of change:
+						</th>
+						<th  width="70%"><h:outputText value="#{network.networkData.routingInfoSection.effectiveDateOfChange}"/></th>
+					</tr>
+				</table>
+				
+				<table class="tabla_ir21 tabla_datos">
+					<tr>
+						<th>CCITTE164NumberSeries</th>
+						<th>Country Code (CC)</th>
+						<th>National Destination Code (NDC)</th>
+						<th>SN Range Start</th>
+						<th>SN Range Stop</th>
+					</tr>
+					<c:forEach var="rangeData" items="#{network.networkData.routingInfoSection.CCITTE164NumberSeries.MSISDNNumberRanges.rangeData}">
+						
+						<tr>
+							<td>
+								<h:outputText value="#{rangeData.numberRange.CC}"/>
+							</td>
+							<td>
+								<h:outputText value="#{rangeData.numberRange.NDC}"/>
+							</td>
+							<td>
+								<h:outputText value="#{rangeData.numberRange.SNRange.SNRangeStart}"/>
+							</td>
+							<td>
+								<h:outputText value="#{rangeData.numberRange.SNRange.SNRangeStop}"/>
+							</td>
+						</tr>	
+					
+					</c:forEach>
+					
+				</table>
+				
+				<div class="titulo_ir21">Additional Information</div>
+					<table class="tabla_ir21 tabla_datos">
+						
+							<c:forEach var="additional" items="#{network.networkData.routingInfoSection.additionalInformation.additionalInformationLine}">
+						
+									<tr>
+							<td><h:outputText value="#{additional}"/></td>
+							</tr>
+							
+							</c:forEach>
+					</table>	
+					
+				<div class="titulo_ir21">History of changes</div>
+				
+					<table class="tabla_ir21 tabla_datos">
+						<tr>
+							<th>Date</th>
+							<th>Description</th>
+						</tr>
+						
+						<c:forEach var="history" items="#{network.networkData.routingInfoSection.changeHistory.changeHistoryItem}">
+							<tr>
+								<td><h:outputText value="#{history.date}"/></td>
+								<td><h:outputText value="#{history.description}"/></td>
+							</tr>
+						</c:forEach>
+					
+					</table>
+			
+			</c:forEach>
+		
+		</t:htmlTag>
+	</f:view>
+	</ui:define>
+</ui:composition>
