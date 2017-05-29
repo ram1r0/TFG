@@ -8,13 +8,91 @@
 	template="../../templates/main.xhtml">
 	
 	<ui:define name="content">
-	
+		
 	<f:metadata>
-   </f:metadata>
+          <f:event type="preRenderView" listener="#{homeBean.init}" />
+    </f:metadata>
 	
 	<f:view>
+		<h:form id="form_IR21">
 		
-
+		<div>
+		<table class="tabla_form" cellpadding="5" style="width:100%">
+				<tr>
+					<th width="20%">
+						<div class="formulario_etiqueta">País</div>
+					</th>
+					<th>
+						<p:selectOneMenu value="#{homeBean.pais}">
+							<f:selectItem itemLabel="Seleccionar"/>
+			           	 	<f:selectItems  value="#{homeBean.paises}" />
+						</p:selectOneMenu>	
+					</th>
+				</tr>
+				<tr>
+					<th>
+						<div class="formulario_etiqueta">Operadora</div>
+					</th>
+						<td>
+							<p:inputText value="#{homeBean.operadora}" size="50"></p:inputText>
+						</td>
+					</tr>
+			</table>
+			
+			<p:commandButton icon="ui-icon-search" actionListener="#{homeBean.actionBuscar}" action="#{homeBean.buscar}" update="tablaIR21" value="Buscar"></p:commandButton>
+			<p:commandButton icon="ui-icon-refresh" actionListener="#{homeBean.actionBuscar}" action="#{homeBean.limpiar}" update="tablaIR21" value="Limpiar"></p:commandButton>
+		</div>
+		
+		<t:dataTable forceId="false" style="width:100%;margin:0 auto;" id="tablaIR21" var="varIR21" value="#{homeBean.listaIR21}" rows="100" styleClass="tabla-defecto #{empty homeBean.listaIR21 ? 'tabla-vacia':''}">
+				<t:column 
+					headertitle="Pais" sortable="true"
+					sortPropertyName="pais" width="40%" style="text-align:left;">
+					<f:facet name="header">
+						<t:commandSortHeader
+							columnName="Pais"
+							propertyName="pais">
+							<h:outputText value="País"/>
+	        				<h:graphicImage url="/img/sort_header.png" styleClass="sort-img" alt="ordenar"/>
+						</t:commandSortHeader>
+					</f:facet>
+						<h:outputText value="#{varIR21.pais}" />
+				</t:column>
+				
+				<t:column 
+					headertitle="Operadora" sortable="true"
+					sortPropertyName="operadora" width="40%" style="text-align:left;">
+					<f:facet name="header">
+						<t:commandSortHeader
+							columnName="Operadora"
+							propertyName="operadora">
+							<h:outputText value="Operadora"/>
+	        				<h:graphicImage url="/img/sort_header.png" styleClass="sort-img" alt="ordenar"/>
+						</t:commandSortHeader>
+					</f:facet>
+					<h:outputLink value="/proy/jsp/ir21/ir21.jsf">
+						<h:outputText value="#{varIR21.operadora}" />
+						<f:param name="id" value="#{varIR21.id}"/>
+					</h:outputLink>
+				</t:column>
+				
+				<t:column 
+					headertitle="Fecha" sortable="true"
+					sortPropertyName="fechaModificacion" width="40%" style="text-align:left;">
+					<f:facet name="header">
+						<t:commandSortHeader
+							columnName="fechaModificacion"
+							propertyName="fechaModificacion">
+							<h:outputText value="Modificación"/>
+	        				<h:graphicImage url="/img/sort_header.png" styleClass="sort-img" alt="ordenar"/>
+						</t:commandSortHeader>
+					</f:facet>
+					<h:outputLink value="/proy/jsp/tutor/tutoriaSol.jsf">
+						<h:outputText value="#{varIR21.fechaModificacion}" />
+						<f:param name="user" value="#{varIR21.pais}"/>
+					</h:outputLink>
+				</t:column>
+			</t:dataTable>
+</h:form>
 	</f:view>
 	</ui:define>
 </ui:composition>

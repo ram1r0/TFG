@@ -19,9 +19,9 @@ public class SessionBean {
 		return ses != null && (Boolean) ses;
 	}
 
-	public UsuarioDTO getUsuario() {
+	public String getUsuario() {
 		Object ses = Utils.getSesAttribute("usuario");
-		return ses != null ? (UsuarioDTO) ses : null;
+		return ses != null ? (String) ses : null;
 	}
 
 }

@@ -13,55 +13,20 @@
 	</div>
 
 	<!-- navegacion -->	
-	 <nav id="topNav">  
+	<t:htmlTag value="nav" id="topNav" rendered="#{sessionBean.usuario != null}">
                 <ul>  
               		  <li><h:outputLink value="/proy/jsp/home/home.jsf">Home</h:outputLink>
                     </li>  
-                    <li><a href="#" title="Docencia">IR21</a>
-	                    <ul>    
-	                        <li><h:outputLink value="/proy/jsp/"></h:outputLink></li>
-	                    </ul>       
+                      <li><h:outputLink value="/proy/jsp/ir21/upload.jsf">Importar</h:outputLink>
+                    </li>  
+                     <li><h:outputLink value="/proy/jsp/ir21/buscar.jsf">Búsqueda</h:outputLink>
                     </li>  
 	                <li>  
-	                    <h:outputLink rendered="#{sessionBean.usuario == null}" id="loginLink" value="javascript:void(0)" onclick="PF('dlg').show()" title="login">   
-					        Acceso 
+	                    <h:outputLink rendered="#{sessionBean.usuario != null}" id="loginLink" value="javascript:void(0)" onclick="PF('dlg').show()" title="login">   
+					        Logout 
 					    </h:outputLink>
-				      	<h:outputLink value="#" style="width:200px;" rendered="#{sessionBean.usuario != null}"><h:outputText value="@#{sessionBean.usuario.nombre}"/></h:outputLink>
-				      	<t:htmlTag value="ul" rendered="#{sessionBean.usuario != null}">
-				      		<li>
-				      			<h:outputLink rendered="#{!sessionBean.admin}" title="Editar perfil" value="/proy/jsp/usuarios/editarUsuario.jsf">
-									<h:outputText value="Editar perfil" />
-									<f:param name="user" value="#{sessionBean.usuario.id}"/>
-							</h:outputLink> 
-				      		</li>
-				      		<li><a href="/proy/jsp/doc/listaDocumentos.jsf" title="Documentos">Documentos</a></li>
-				      		<li><a href="/proy/logout" title="Cerrar sesi&#243;n">Cerrar sesi&#243;n</a></li>
-				      	</t:htmlTag>
+					    
 	                </li>  
             </ul>  
-        </nav>  
-        
-           <script type="text/javascript">  
-      			nav(); 
-    		</script>  
-    	
-    	    <p:dialog id="dialog_login" header="Login" widgetVar="dlg" resizable="false">  
-  				<h:form id="form_login_tab">
-			        <h:panelGrid  columnClasses="etiqueta_tabla" columns="2" cellpadding="5">  
-			            <h:outputLabel for="usuario_tab" value="Usuario" />  
-			            <h:inputText value="#{loginBean.usuario}"   
-			                    id="usuario_tab" required="true" label="usuario" />  
-			              
-			            <h:outputLabel for="clave_tab" value="Clave" />  
-			            <h:inputSecret value="#{loginBean.clave}"   
-			                    id="clave_tab" required="true" label="clave" />  
-			              
-			            <f:facet name="footer">  
-			                <p:commandButton ajax="false" id="login_tab" value="Login"   
-			                    action="#{loginBean.login}"/>  
-			            </f:facet>  
-			        </h:panelGrid>  
-		        </h:form>
-		    </p:dialog>  
-	
+        </t:htmlTag>  
 </html>

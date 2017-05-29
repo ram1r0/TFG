@@ -24,10 +24,6 @@
 				<!-- Logo -->
 				<div id="logo">
 					<div id="logo-rs">
-						<!-- Informacion del usuario -->
-						<t:div id="user-info" rendered="#{sessionScope._usuario.nombre != null}">
-							<span>Usuario:</span> #{sessionScope._usuario.nombre}
-						</t:div>
 					</div>
 				</div>
 			</div>
@@ -64,14 +60,10 @@
 			<div id="footer-push"/>
 		</div>
 		
-		<!-- Footer -->
-		<ui:include src="footer.xhtml"/>
+		
 	</h:body>
 	
-	<p:dialog id="welcome" rendered="#{requestScope.mostrarMensaje}" header="Bienvenido" widgetVar="welcome" modal="true" height="70" width="200">  
-	    <h:outputText value="Bienvenido #{sessionBean.usuario.nombre}" rendered="#{!sessionBean.admin}"/>  
-	    <h:outputText value="Acceso administrador" rendered="#{sessionBean.admin}"/>  
-	</p:dialog> 
+	
 
 	<script type="text/javascript">
 	function fwelcome(){

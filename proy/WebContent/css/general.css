@@ -64,7 +64,7 @@ h4 {
 }
 
 h1,h2 {
-	font-family: Garamond, Georgia;
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
 }
 
 h3 {
@@ -75,7 +75,7 @@ h3 {
 
 a {
 	text-decoration: none;
-	color: #182E59;
+	color: #003300;
 }
 
 #contenido a {
@@ -96,13 +96,13 @@ ol,ul {
 
 .titulo_pag {
 	margin-bottom: 30px;
-	color: #182E59;
+	color: #003300;
 	font-weight: bold;
 }
 
 #header {
 	height: 85px;
-	background: linear-gradient(to bottom, #224280 0%, #182E59 100%) repeat
+	background: linear-gradient(to bottom, #336600 0%, #003300 100%) repeat
 		scroll 0 0 transparent;
 	border-bottom: 1px solid #101E3B;
 }
@@ -113,7 +113,7 @@ ol,ul {
 	margin-left: 20px;
 	float: left;
 	font-size: 50px;
-	font-family: Garamond, Georgia, Times, serif;
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
 	color: white;
 }
 
@@ -126,10 +126,9 @@ nav {
 	display: block;
 	margin: 0 auto 20px;
 	position: relative;
-	background: linear-gradient(to bottom, #224280 0%, #182E59 100%) repeat
+	background: linear-gradient(to bottom, #336600 0%, #003300 100%) repeat
 		scroll 0 0 transparent;
-	border-top: 1px solid #2A509C;
-	font-family: Georgia;
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
 	font-size: 1.2em;
 }
 
@@ -162,7 +161,7 @@ nav li a {
 
 nav li a:hover {
 	background-color: #EAE9E3;
-	color: #182E59;
+	color: #003300;
 }
 
 nav li a:focus {
@@ -201,7 +200,7 @@ nav ul ul a {
 	border-right: none;
 	font-size: 14px;
 	background-color: #EAE9E3;
-	color: #182E59;
+	color: #003300;
 }
 
 nav ul ul a:hover {
@@ -239,7 +238,7 @@ nav ul ul a:hover {
 	float: left;
 	margin: 0;
 	width: 100%;
-	background: linear-gradient(to bottom, #224280 0%, #182E59 100%) repeat
+	background: linear-gradient(to bottom, #224280 0%, #003300 100%) repeat
 		scroll 0 0 transparent;
 	color: white;
 	bottom: 0;
@@ -254,7 +253,7 @@ nav ul ul a:hover {
 	font-size: 1em;
 	text-transform: lowercase;
 	padding: 3px;
-	font-family: Garamond, Georgia;
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
 	font-size: 1.4em;
 	padding-top: 20px;
 }
@@ -292,7 +291,7 @@ table.tabla-defecto input,table.tabla-defecto select {
 table.tabla-defecto th {
 	border-bottom: 2px solid #CBD0D0;
 	padding: .5em .5em .3em;
-	font: bold 1em Verdana, Arial, sans-serif;
+	font: bold 1em Lucida Grande, Lucida Sans, Arial, sans-serif, Arial, sans-serif;
 	background-position: 10px 0;
 	background-repeat: no-repeat;
 	text-align: center;
@@ -344,86 +343,12 @@ table.tabla-vacia td {
 	font-size: 0.8em;
 }
 
-.noticia_entrada {
-	width: 210px;
-	float: left;
-	margin-left: 20px;
-}
-
-.noticia_entrada h2 {
-	font-size: 18px;
-}
-
-.noticia_contenido_texto {
-	line-height: 1.3em;
-	font-size: 1.2em;
-	text-align: justify;
-}
-
-.noticias_panel {
-	clear: both;
-	content: ".";
-	display: block;
-	height: 0;
-}
-
-.noticias_panel_izq {
-	float: left;
-	width: 640px;
-}
-
-.noticias_panel_der {
-	float: left;
-	margin-left: 20px;
-	overflow: hidden;
-	width: 280px;
-}
-
-.home-eventos-izq {
-	float: left;
-	width: 640px;
-}
-
-.home-eventos-der {
-	float: left;
-	margin-left: 20px;
-	overflow: hidden;
-	width: 280px;
-}
 
 .home-titulo {
 	margin-bottom: 10px;
-	color: #182E59;
+	color: #003300;
 }
 
-.home-eventos-main {
-	margin-top: 25px;
-}
-
-.home-evento-entrada-fecha {
-	float: left;
-	font-size: 1.3em;
-	text-align: center;
-	width: 55px;
-	height: 55px;
-	font-weight: bold;
-	background-color: #182E59;
-	color: white;
-}
-
-.home-evento-entrada {
-	width: 220px;
-	clear: both;
-	margin-bottom: 20px;
-}
-
-.home-evento-entrada-texto {
-	margin-left: 10px;
-	float: left;
-	text-align: left;
-	width: 150px;
-	margin-bottom: 10px;
-}
 
 .cont_separador {
 	width: 100%;
@@ -440,6 +365,44 @@ table.tabla-vacia td {
 	margin-bottom:20px;
 }
 
-.tutoria_dia {
-	font-weight:bold;font-size:14px;margin-top:20px;
+
+/********************** LIMPIADO ******************/
+
+.titulo_ir21 {
+	margin-bottom: 20px;
+	margin-top:50px;
+	font-size: 18px;
+    color: #003300;
+    font-weight: bold;
+}
+
+.tabla_ir21 {
+	width: 100%;
+	text-align: left;
+	font-size:14px;
+}
+
+.tabla_ir21 .leyenda {
+	font-weight: bold;
+}
+
+.tabla_ir21 td, .tabla_ir21 th{
+	padding:6px;
+}
+
+.tabla_datos th, .tabla_datos td {
+	border: 1px solid #d5d5d6;
+}
+
+.tabla_datos th {
+	background-color: #d5d5d6;
+}
+
+.tabla_form th, .tabla_form td {
+	padding: 0 20px 20px 0;
+	text-align: left;
+}
+
+.tabla_form .formulario_etiqueta{
+	margin:0!important;
 }

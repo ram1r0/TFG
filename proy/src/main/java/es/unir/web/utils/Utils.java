@@ -1,15 +1,22 @@
 package es.unir.web.utils;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Locale;
+import java.util.List;
 import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.Properties;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,20 +32,68 @@ public class Utils {
 			"dd/MM/yyyy HH:mm");
 
 	static Logger log = Logger.getLogger(Utils.class);
+	
+	public static  Properties props = null;
+	
+
+//	public static String getPropiedad(String propiedad) {
+//		String ret = "";
+//		FacesContext facesContext = FacesContext.getCurrentInstance();
+//		String messageBundleName = facesContext.getApplication()
+//				.getMessageBundle();
+//		Locale locale = facesContext.getViewRoot().getLocale();
+//		ResourceBundle bundle = ResourceBundle.getBundle(messageBundleName,
+//				locale);
+//		if (bundle != null) {
+//			ret = bundle.getString(propiedad);
+//		}
+//		return ret;
+//	}
+	
 
 	public static String getPropiedad(String propiedad) {
-		String ret = "";
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		String messageBundleName = facesContext.getApplication()
-				.getMessageBundle();
-		Locale locale = facesContext.getViewRoot().getLocale();
-		ResourceBundle bundle = ResourceBundle.getBundle(messageBundleName,
-				locale);
-		if (bundle != null) {
-			ret = bundle.getString(propiedad);
-		}
-		return ret;
+	    if(props == null){    
+	    props = new Properties();
+	    try {
+		props.load(new FileInputStream(new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/WEB-INF/conf.properties"))));
+	    } catch (FileNotFoundException e) {
+		e.printStackTrace();
+		 log.error(e.getMessage());
+	    } catch (IOException e) {
+		e.printStackTrace();
+		 log.error(e.getMessage());
+	    }
+	    }
+	    
+	    return props.getProperty(propiedad);
 	}
+	
+	public static List<SelectItem> getPaises(){
+	    List<SelectItem> paises = new ArrayList<SelectItem>(247);
+	    
+	    File file = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/WEB-INF/paises.properties"));
+	    
+	        try {
+		    Scanner sc = new Scanner(new FileInputStream(file), "UTF-8");
+		    
+		    while (sc.hasNextLine()) {
+			String line = sc.nextLine();
+			if(StringUtils.hasText(line)){
+			    String[] split = line.split(";");
+			    SelectItem select = new SelectItem(split[0],split[0]);
+			    paises.add(select);
+			}
+		    }
+		    
+		    sc.close();
+		} catch (FileNotFoundException e) {
+		   log.error(e.getMessage());
+		}
+	        return paises;
+	        
+	}		    
+	
+
 
 	public static void setReqParametro(final String attribute, final Object o) {
 		final HttpServletRequest req = (HttpServletRequest) FacesContext

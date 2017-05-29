@@ -24,6 +24,73 @@
 		</managed-property>
 	</managed-bean>
 	
+	<managed-bean>
+		<managed-bean-name>mainBean</managed-bean-name>
+		<managed-bean-class>es.unir.web.beans.MainBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+			<property-name>repositorioDAO</property-name>
+			<value>#{repositorioDAO}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>homeBean</managed-bean-name>
+		<managed-bean-class>es.unir.web.beans.HomeBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+			<property-name>repositorioDAO</property-name>
+			<value>#{repositorioDAO}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicioIR21DAO</property-name>
+			<value>#{servicioIR21DAO}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>ir21Bean</managed-bean-name>
+		<managed-bean-class>es.unir.web.beans.Ir21Bean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>repositorioDAO</property-name>
+			<value>#{repositorioDAO}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicioIR21DAO</property-name>
+			<value>#{servicioIR21DAO}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>nuevoIR21Bean</managed-bean-name>
+		<managed-bean-class>es.unir.web.beans.NuevoIR21</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>repositorioDAO</property-name>
+			<value>#{repositorioDAO}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicioIR21DAO</property-name>
+			<value>#{servicioIR21DAO}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>searchBean</managed-bean-name>
+		<managed-bean-class>es.unir.web.beans.SearchBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>repositorioDAO</property-name>
+			<value>#{repositorioDAO}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicioIR21DAO</property-name>
+			<value>#{servicioIR21DAO}</value>
+		</managed-property>
+	</managed-bean>
+	
+	
 
 	<navigation-rule>
 		 <navigation-case> 

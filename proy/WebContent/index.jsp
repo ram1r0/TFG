@@ -1,1 +1,1 @@
-<% response.sendRedirect("/proy/jsp/home/login.jsf"); %>
+<% response.sendRedirect("/proy/jsp/admin/login.jsf"); %>

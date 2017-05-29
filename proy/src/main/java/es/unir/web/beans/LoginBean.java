@@ -3,8 +3,10 @@ package es.unir.web.beans;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
@@ -30,19 +32,21 @@ public class LoginBean {
 		if (getProperties().get("admin.user").equals(getUsuario())
 				&& getProperties().get("admin.pass").equals(getClave())) {
 			Utils.setSesAttribute("admin", Boolean.TRUE);
-			UsuarioDTO usuario = new UsuarioDTO();
-			usuario.setNombre("administrador");
-			Utils.setSesAttribute("usuario", usuario);
+			Utils.setSesAttribute("usuario", "admin");
 			Utils.setReqParametro("mostrarMensaje", true);
-			return "";
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
+			try {
+			    response.sendRedirect("/proy/jsp/home/home.jsf");
+			} catch (IOException e) {
+			    e.printStackTrace();
+			    log.error(e.getMessage(), e);
+			}
+		} else {
+		    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario no es válido. ", "");
+		    FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 
-		UsuarioDTO usuario = usuarioDAO
-				.obtenerUsuario(getUsuario(), getClave());
-		if (usuario != null) {
-			Utils.setSesAttribute("usuario", usuario);
-			Utils.setReqParametro("mostrarMensaje", true);
-		}
 
 		return "";
 	}
