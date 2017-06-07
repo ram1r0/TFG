@@ -34,6 +34,15 @@
 		<param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
 		<param-value>true</param-value>
 	</context-param>
+	<!-- Filtro seguridad -->
+	<filter>
+		<filter-name>session</filter-name>
+		<filter-class>es.unir.web.filter.SessionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>session</filter-name>
+		<url-pattern>*.jsf</url-pattern>
+	</filter-mapping>
 	<filter>
 		<filter-name>Character Encoding Filter</filter-name>
 		<filter-class>es.unir.web.filter.CharacterEncodingFilter</filter-class>

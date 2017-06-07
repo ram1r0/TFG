@@ -37,85 +37,28 @@ public class SessionFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) res;
 		String url = request.getServletPath();
 		url = url.toLowerCase();
-
-		if (isUrlAllowed(url)) {
-			chain.doFilter(req, res);
+		
+		if(url.contains(".jsf") && url.contains("jsp") && !url.contains("login.jsf")){
+		    if(!isAutenticado(request.getSession())){
+			response.sendRedirect("/proy");
+		    } else {
+			chain.doFilter(new RequestWrapper((HttpServletRequest) req),
+				res);
+		    }
 		} else {
-			HttpSession session = request.getSession(false);
-
-			if (session == null || !isAutenticado(session)) {
-				response.sendRedirect("/");
-			} else {
-				chain.doFilter(new RequestWrapper((HttpServletRequest) req),
-						res);
-			}
+		    chain.doFilter(new RequestWrapper((HttpServletRequest) req),
+				res);
 		}
+		
 	}
 
 	public void init(FilterConfig config) throws ServletException {
 
-		log.info("Cargando el filtro de seguridad. ");
-		String conf = config.getInitParameter("config");
-		log.info("Nombre del fichero de seguridad: " + conf);
-		InputStream is = config.getServletContext().getResourceAsStream(conf);
-		Properties properties = new Properties();
-		if (is == null) {
-			log.error("ATENCIÓN: No se ha encontrado el fichero de seguridad. Se ha deshabilitado la seguridad de la aplicación. ");
-			return;
-		}
-
-		try {
-
-			try {
-				properties.load(is);
-			} finally {
-				is.close();
-			}
-
-		} catch (IOException e) {
-			log.error("Error al cargar la configuración del fichero de seguirdad.");
-		}
-
-		// String urls = config.getInitParameter("avoid-urls");
-		StringTokenizer token = new StringTokenizer(
-				properties.getProperty("SEGURIDAD.PERMITIR"), ",");
-
-		urlList = new ArrayList<String>();
-
-		log.info("************************ Url denegadas ***************************");
-		while (token.hasMoreTokens()) {
-			String pol = token.nextToken().trim().toLowerCase();
-			log.info("--> *" + pol);
-			urlList.add(pol);
-		}
-
-		log.info("*************************** Permisos ******************************");
-		permisos = new HashMap<String, String>();
-		token = new StringTokenizer(
-				properties.getProperty("SEGURIDAD.PERMISOS"), " ");
-		while (token.hasMoreTokens()) {
-			String pol = token.nextToken().trim();
-			String[] array = pol.split("!");
-			log.info("URL: " + array[0].toLowerCase() + " PERMISO: " + array[1]);
-			permisos.put(array[0].toLowerCase(), array[1]);
-		}
-
 	}
 
-	private boolean isUrlAllowed(String path) {
-		for (String url : urlList) {
-			if (path.contains(url))
-				return true;
-		}
-
-		if (log.isDebugEnabled()) {
-			log.debug("Acceso denegado --> " + path);
-		}
-		return false;
-	}
 
 	private boolean isAutenticado(HttpSession session) {
-		return true;
+		return session.getAttribute("usuario") != null;
 	}
 
 }
