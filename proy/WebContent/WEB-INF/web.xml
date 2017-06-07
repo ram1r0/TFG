@@ -83,19 +83,6 @@
 		<servlet-name>Faces Servlet</servlet-name>
 	</filter-mapping>
 
-	<!-- Filtro de Pretty faces -->
-	<filter>
-		<filter-name>Pretty Filter</filter-name>
-		<filter-class>com.ocpsoft.pretty.PrettyFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>Pretty Filter</filter-name>
-		<url-pattern>/*</url-pattern>
-		<dispatcher>FORWARD</dispatcher>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>ERROR</dispatcher>
-	</filter-mapping>
-
 
 	<!-- JSF servlet. -->
 	<servlet>
@@ -111,7 +98,7 @@
 	
 	<servlet>
 		<servlet-name>logout</servlet-name>
-		<servlet-class>es.unir.web.servlet.SalirSesion</servlet-class>
+		<servlet-class>es.unir.web.servlet.Logout</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
@@ -119,13 +106,23 @@
 		<servlet-name>logout</servlet-name>
 		<url-pattern>/logout</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>descarga</servlet-name>
+		<servlet-class>es.unir.web.servlet.DownloadIR21</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
-	<!-- Custom JSF servlet. -->
+	<servlet-mapping>
+		<servlet-name>descarga</servlet-name>
+		<url-pattern>/descarga.jsf</url-pattern>
+	</servlet-mapping>
+
 
 	<!-- Pantallas de error. -->
 	<error-page>
 		<error-code>404</error-code>
-		<location>/error?e=404</location>
+		<location>/index.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>

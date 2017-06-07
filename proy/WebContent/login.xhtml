@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../templates/main.xhtml">
+	
+	<ui:define name="content">
+	
+	<f:metadata>
+   </f:metadata>
+	
+	<f:view>
+	
+		<h1 class="titulo_pag"><h:outputText value="Acceso"/></h1>
+		
+			
+		
+		<h:form id="form_login" style="text-align:center;">
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+		
+	        <h:panelGrid style="margin-left: 35%;" columnClasses="etiqueta_tabla" columns="2" cellpadding="5">  
+	            <h:outputLabel for="usuario" value="Usuario" />  
+	            <p:inputText value="#{loginBean.usuario}"   
+	                    id="usuario" required="true" label="usuario" />  
+	              
+	            <h:outputLabel for="clave" value="Clave" />  
+	            <p:password value="#{loginBean.clave}"   
+	                    id="clave" required="true" label="clave" />  
+	        </h:panelGrid>  
+	        
+	                <p:commandButton icon="ui-icon-person" ajax="false" id="boton_login" value="Login"   
+	                    action="#{loginBean.login}" update="messages"/>  
+        </h:form>
+        
+	</f:view>
+	</ui:define>
+</ui:composition>

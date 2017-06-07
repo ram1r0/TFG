@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-public class SalirSesion extends HttpServlet {
+public class Logout extends HttpServlet {
 
-	Logger log = Logger.getLogger(SalirSesion.class);
+	Logger log = Logger.getLogger(Logout.class);
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse res)
@@ -21,7 +21,7 @@ public class SalirSesion extends HttpServlet {
 
 		res.setStatus(HttpServletResponse.SC_OK);
 		try {
-			res.sendRedirect("/proy/jsp/home/home.jsf");
+			res.sendRedirect("/proy/jsp/admin/login.jsf");
 		} catch (IOException e) {
 		}
 

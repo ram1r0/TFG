@@ -139,9 +139,9 @@ public class TADIGRAEXIR21 implements Serializable {
                 @XmlElement(name = "PresentationOfCountryInitialsAndMNN", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                 protected String presentationOfCountryInitialsAndMNN;
                 @XmlElement(name = "AbbreviatedMNN", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                protected byte abbreviatedMNN;
+                protected String abbreviatedMNN;
                 @XmlElement(name = "NetworkColourCode", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                protected byte networkColourCode;
+                protected String networkColourCode;
 
                 
                 public String getTADIGCode() {
@@ -194,22 +194,22 @@ public class TADIGRAEXIR21 implements Serializable {
                 }
 
                 
-                public byte getAbbreviatedMNN() {
+                public String getAbbreviatedMNN() {
                     return abbreviatedMNN;
                 }
 
                 
-                public void setAbbreviatedMNN(byte value) {
+                public void setAbbreviatedMNN(String value) {
                     this.abbreviatedMNN = value;
                 }
 
                 
-                public byte getNetworkColourCode() {
+                public String getNetworkColourCode() {
                     return networkColourCode;
                 }
 
                 
-                public void setNetworkColourCode(byte value) {
+                public void setNetworkColourCode(String value) {
                     this.networkColourCode = value;
                 }
 
@@ -3865,7 +3865,7 @@ public class TADIGRAEXIR21 implements Serializable {
                                     @XmlElement(name = "MCC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                                     protected short mcc;
                                     @XmlElement(name = "MNC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                    protected byte mnc;
+                                    protected String mnc;
 
                                     
                                     public short getMCC() {
@@ -3878,12 +3878,12 @@ public class TADIGRAEXIR21 implements Serializable {
                                     }
 
                                     
-                                    public byte getMNC() {
+                                    public String getMNC() {
                                         return mnc;
                                     }
 
                                     
-                                    public void setMNC(byte value) {
+                                    public void setMNC(String value) {
                                         this.mnc = value;
                                     }
 
@@ -4989,7 +4989,7 @@ public class TADIGRAEXIR21 implements Serializable {
                                     @XmlElement(name = "Profile", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                     protected String profile;
                                     @XmlElement(name = "QCIValue", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                    protected byte qciValue;
+                                    protected String qciValue;
                                     @XmlElement(name = "QOSARPList", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                     protected TADIGRAEXIR21 .OrganisationInfo.NetworkList.Network.NetworkData.LTEInfoSection.LTEInfo.LTEQosProfileList.LTEQosProfile.QOSARPList qosarpList;
 
@@ -5004,12 +5004,12 @@ public class TADIGRAEXIR21 implements Serializable {
                                     }
 
                                     
-                                    public byte getQCIValue() {
+                                    public String getQCIValue() {
                                         return qciValue;
                                     }
 
                                     
-                                    public void setQCIValue(byte value) {
+                                    public void setQCIValue(String value) {
                                         this.qciValue = value;
                                     }
 
@@ -5032,15 +5032,15 @@ public class TADIGRAEXIR21 implements Serializable {
                                     public static class QOSARPList  implements Serializable {
 
                                         @XmlElement(name = "ARP", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                        protected byte arp;
+                                        protected String arp;
 
                                         
-                                        public byte getARP() {
+                                        public String getARP() {
                                             return arp;
                                         }
 
                                         
-                                        public void setARP(byte value) {
+                                        public void setARP(String value) {
                                             this.arp = value;
                                         }
 
@@ -7453,7 +7453,7 @@ public class TADIGRAEXIR21 implements Serializable {
                                     @XmlElement(name = "MMSC_IP_AddressRange", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                     protected String mmscipAddressRange;
                                     @XmlElement(name = "MaxMMSSizeAllowed", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                    protected byte maxMMSSizeAllowed;
+                                    protected String maxMMSSizeAllowed;
                                     @XmlElement(name = "DeliveryReportAllowed", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                     protected String deliveryReportAllowed;
                                     @XmlElement(name = "ReadReportAllowed", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
@@ -7484,12 +7484,12 @@ public class TADIGRAEXIR21 implements Serializable {
                                     }
 
                                     
-                                    public byte getMaxMMSSizeAllowed() {
+                                    public String getMaxMMSSizeAllowed() {
                                         return maxMMSSizeAllowed;
                                     }
 
                                     
-                                    public void setMaxMMSSizeAllowed(byte value) {
+                                    public void setMaxMMSSizeAllowed(String value) {
                                         this.maxMMSSizeAllowed = value;
                                     }
 
@@ -7771,7 +7771,7 @@ public class TADIGRAEXIR21 implements Serializable {
                                     @XmlElement(name = "SwHwVersion", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                                     protected String swHwVersion;
                                     @XmlElement(name = "DualAccess", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                    protected Byte dualAccess;
+                                    protected String dualAccess;
                                     @XmlElement(name = "UTCTimeOffset", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                     protected String utcTimeOffset;
 
@@ -7826,12 +7826,12 @@ public class TADIGRAEXIR21 implements Serializable {
                                     }
 
                                     
-                                    public Byte getDualAccess() {
+                                    public String getDualAccess() {
                                         return dualAccess;
                                     }
 
                                     
-                                    public void setDualAccess(Byte value) {
+                                    public void setDualAccess(String value) {
                                         this.dualAccess = value;
                                     }
 
@@ -7856,19 +7856,19 @@ public class TADIGRAEXIR21 implements Serializable {
                                     public static class GTAddressInfo implements Serializable {
 
                                         @XmlElement(name = "CC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                        protected byte cc;
+                                        protected String cc;
                                         @XmlElement(name = "NDC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                                         protected long ndc;
                                         @XmlElement(name = "SN_Range", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                                         protected TADIGRAEXIR21 .OrganisationInfo.NetworkList.Network.NetworkData.NetworkElementsInfoSection.NetworkElementsInfo.NwNodeList.NwNode.GTAddressInfo.SNRange snRange;
 
                                         
-                                        public byte getCC() {
+                                        public String getCC() {
                                             return cc;
                                         }
 
                                         
-                                        public void setCC(byte value) {
+                                        public void setCC(String value) {
                                             this.cc = value;
                                         }
 
@@ -7902,17 +7902,17 @@ public class TADIGRAEXIR21 implements Serializable {
                                         public static class SNRange implements Serializable {
 
                                             @XmlElement(name = "SN_RangeStart", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                            protected byte snRangeStart;
+                                            protected String snRangeStart;
                                             @XmlElement(name = "SN_RangeStop", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                                             protected short snRangeStop;
 
                                             
-                                            public byte getSNRangeStart() {
+                                            public String getSNRangeStart() {
                                                 return snRangeStart;
                                             }
 
                                             
-                                            public void setSNRangeStart(byte value) {
+                                            public void setSNRangeStart(String value) {
                                                 this.snRangeStart = value;
                                             }
 
@@ -8407,15 +8407,15 @@ public class TADIGRAEXIR21 implements Serializable {
                             public static class MultiplePDPContextSupport implements Serializable {
 
                                 @XmlElement(name = "NumOfPrimaryPDPContext", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                protected byte numOfPrimaryPDPContext;
+                                protected String numOfPrimaryPDPContext;
 
                                 
-                                public byte getNumOfPrimaryPDPContext() {
+                                public String getNumOfPrimaryPDPContext() {
                                     return numOfPrimaryPDPContext;
                                 }
 
                                 
-                                public void setNumOfPrimaryPDPContext(byte value) {
+                                public void setNumOfPrimaryPDPContext(String value) {
                                     this.numOfPrimaryPDPContext = value;
                                 }
 
@@ -8461,7 +8461,7 @@ public class TADIGRAEXIR21 implements Serializable {
                                     @XmlElement(name = "ARP2G3GList", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                     protected TADIGRAEXIR21 .OrganisationInfo.NetworkList.Network.NetworkData.PacketDataServiceInfoSection.PacketDataServiceInfo.QOSProfile2G3GList.QOSProfile2G3GItem.ARP2G3GList arp2G3GList;
                                     @XmlElement(name = "EvolvedARP", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                    protected byte evolvedARP;
+                                    protected String evolvedARP;
                                     @XmlElement(name = "SDUFormatInformation2G3GList", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                     protected String sduFormatInformation2G3GList;
 
@@ -8496,12 +8496,12 @@ public class TADIGRAEXIR21 implements Serializable {
                                     }
 
                                     
-                                    public byte getEvolvedARP() {
+                                    public String getEvolvedARP() {
                                         return evolvedARP;
                                     }
 
                                     
-                                    public void setEvolvedARP(byte value) {
+                                    public void setEvolvedARP(String value) {
                                         this.evolvedARP = value;
                                     }
 
@@ -8524,15 +8524,15 @@ public class TADIGRAEXIR21 implements Serializable {
                                     public static class ARP2G3GList implements Serializable{
 
                                         @XmlElement(name = "ARP2G3G", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                        protected byte arp2G3G;
+                                        protected String arp2G3G;
 
                                         
-                                        public byte getARP2G3G() {
+                                        public String getARP2G3G() {
                                             return arp2G3G;
                                         }
 
                                         
-                                        public void setARP2G3G(byte value) {
+                                        public void setARP2G3G(String value) {
                                             this.arp2G3G = value;
                                         }
 
@@ -9016,7 +9016,7 @@ public class TADIGRAEXIR21 implements Serializable {
                         @XmlElement(name = "CCITT_E214_MGT", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                         protected TADIGRAEXIR21 .OrganisationInfo.NetworkList.Network.NetworkData.RoutingInfoSection.CCITTE214MGT ccitte214MGT;
                         @XmlElement(name = "DoesNumberPortabilityApply", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                        protected byte doesNumberPortabilityApply;
+                        protected String doesNumberPortabilityApply;
                         @XmlElement(name = "NP_E164NumberRangesList", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                         protected TADIGRAEXIR21 .OrganisationInfo.NetworkList.Network.NetworkData.RoutingInfoSection.NPE164NumberRangesList npe164NumberRangesList;
                         @XmlElement(name = "USIM_SIM_Header", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
@@ -9067,12 +9067,12 @@ public class TADIGRAEXIR21 implements Serializable {
                         }
 
                         
-                        public byte getDoesNumberPortabilityApply() {
+                        public String getDoesNumberPortabilityApply() {
                             return doesNumberPortabilityApply;
                         }
 
                         
-                        public void setDoesNumberPortabilityApply(byte value) {
+                        public void setDoesNumberPortabilityApply(String value) {
                             this.doesNumberPortabilityApply = value;
                         }
 
@@ -9235,19 +9235,19 @@ public class TADIGRAEXIR21 implements Serializable {
                                     public static class NumberRange implements Serializable {
 
                                         @XmlElement(name = "CC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                        protected byte cc;
+                                        protected String cc;
                                         @XmlElement(name = "NDC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                                         protected short ndc;
                                         @XmlElement(name = "SN_Range", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                         protected TADIGRAEXIR21 .OrganisationInfo.NetworkList.Network.NetworkData.RoutingInfoSection.CCITTE164NumberSeries.GTNumberRanges.RangeData.NumberRange.SNRange snRange;
 
                                         
-                                        public byte getCC() {
+                                        public String getCC() {
                                             return cc;
                                         }
 
                                         
-                                        public void setCC(byte value) {
+                                        public void setCC(String value) {
                                             this.cc = value;
                                         }
 
@@ -9281,17 +9281,17 @@ public class TADIGRAEXIR21 implements Serializable {
                                         public static class SNRange implements Serializable {
 
                                             @XmlElement(name = "SN_RangeStart", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                            protected byte snRangeStart;
+                                            protected String snRangeStart;
                                             @XmlElement(name = "SN_RangeStop", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                                             protected long snRangeStop;
 
                                             
-                                            public byte getSNRangeStart() {
+                                            public String getSNRangeStart() {
                                                 return snRangeStart;
                                             }
 
                                             
-                                            public void setSNRangeStart(byte value) {
+                                            public void setSNRangeStart(String value) {
                                                 this.snRangeStart = value;
                                             }
 
@@ -9364,19 +9364,19 @@ public class TADIGRAEXIR21 implements Serializable {
                                     public static class NumberRange implements Serializable {
 
                                         @XmlElement(name = "CC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                        protected byte cc;
+                                        protected String cc;
                                         @XmlElement(name = "NDC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                                         protected int ndc;
                                         @XmlElement(name = "SN_Range", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                         protected TADIGRAEXIR21 .OrganisationInfo.NetworkList.Network.NetworkData.RoutingInfoSection.CCITTE164NumberSeries.MSISDNNumberRanges.RangeData.NumberRange.SNRange snRange;
 
                                         
-                                        public byte getCC() {
+                                        public String getCC() {
                                             return cc;
                                         }
 
                                         
-                                        public void setCC(byte value) {
+                                        public void setCC(String value) {
                                             this.cc = value;
                                         }
 
@@ -9410,17 +9410,17 @@ public class TADIGRAEXIR21 implements Serializable {
                                         public static class SNRange implements Serializable {
 
                                             @XmlElement(name = "SN_RangeStart", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                            protected byte snRangeStart;
+                                            protected String snRangeStart;
                                             @XmlElement(name = "SN_RangeStop", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                                             protected int snRangeStop;
 
                                             
-                                            public byte getSNRangeStart() {
+                                            public String getSNRangeStart() {
                                                 return snRangeStart;
                                             }
 
                                             
-                                            public void setSNRangeStart(byte value) {
+                                            public void setSNRangeStart(String value) {
                                                 this.snRangeStart = value;
                                             }
 
@@ -9472,19 +9472,19 @@ public class TADIGRAEXIR21 implements Serializable {
                                 public static class NumberRange implements Serializable {
 
                                     @XmlElement(name = "CC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                    protected byte cc;
+                                    protected String cc;
                                     @XmlElement(name = "NDC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                                     protected short ndc;
                                     @XmlElement(name = "SN_Range", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                     protected TADIGRAEXIR21 .OrganisationInfo.NetworkList.Network.NetworkData.RoutingInfoSection.CCITTE164NumberSeries.MSRNNumberRanges.NumberRange.SNRange snRange;
 
                                     
-                                    public byte getCC() {
+                                    public String getCC() {
                                         return cc;
                                     }
 
                                     
-                                    public void setCC(byte value) {
+                                    public void setCC(String value) {
                                         this.cc = value;
                                     }
 
@@ -9518,17 +9518,17 @@ public class TADIGRAEXIR21 implements Serializable {
                                     public static class SNRange implements Serializable {
 
                                         @XmlElement(name = "SN_RangeStart", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                        protected byte snRangeStart;
+                                        protected String snRangeStart;
                                         @XmlElement(name = "SN_RangeStop", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                                         protected int snRangeStop;
 
                                         
-                                        public byte getSNRangeStart() {
+                                        public String getSNRangeStart() {
                                             return snRangeStart;
                                         }
 
                                         
-                                        public void setSNRangeStart(byte value) {
+                                        public void setSNRangeStart(String value) {
                                             this.snRangeStart = value;
                                         }
 
@@ -9562,7 +9562,7 @@ public class TADIGRAEXIR21 implements Serializable {
                             @XmlElement(name = "MCC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                             protected short mcc;
                             @XmlElement(name = "MNC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                            protected byte mnc;
+                            protected String mnc;
 
                             
                             public short getMCC() {
@@ -9575,12 +9575,12 @@ public class TADIGRAEXIR21 implements Serializable {
                             }
 
                             
-                            public byte getMNC() {
+                            public String getMNC() {
                                 return mnc;
                             }
 
                             
-                            public void setMNC(byte value) {
+                            public void setMNC(String value) {
                                 this.mnc = value;
                             }
 
@@ -9596,17 +9596,17 @@ public class TADIGRAEXIR21 implements Serializable {
                         public static class CCITTE214MGT implements Serializable {
 
                             @XmlElement(name = "MGT_CC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                            protected byte mgtcc;
+                            protected String mgtcc;
                             @XmlElement(name = "MGT_NC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                             protected short mgtnc;
 
                             
-                            public byte getMGTCC() {
+                            public String getMGTCC() {
                                 return mgtcc;
                             }
 
                             
-                            public void setMGTCC(byte value) {
+                            public void setMGTCC(String value) {
                                 this.mgtcc = value;
                             }
 
@@ -9710,19 +9710,19 @@ public class TADIGRAEXIR21 implements Serializable {
                             public static class NPE164NumberRange implements Serializable {
 
                                 @XmlElement(name = "CC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                protected byte cc;
+                                protected String cc;
                                 @XmlElement(name = "NDC", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
                                 protected int ndc;
                                 @XmlElement(name = "SN_Range", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                 protected TADIGRAEXIR21 .OrganisationInfo.NetworkList.Network.NetworkData.RoutingInfoSection.NPE164NumberRangesList.NPE164NumberRange.SNRange snRange;
 
                                 
-                                public byte getCC() {
+                                public String getCC() {
                                     return cc;
                                 }
 
                                 
-                                public void setCC(byte value) {
+                                public void setCC(String value) {
                                     this.cc = value;
                                 }
 
@@ -9756,27 +9756,27 @@ public class TADIGRAEXIR21 implements Serializable {
                                 public static class SNRange implements Serializable {
 
                                     @XmlElement(name = "SN_RangeStart", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                    protected byte snRangeStart;
+                                    protected String snRangeStart;
                                     @XmlElement(name = "SN_RangeStop", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                    protected byte snRangeStop;
+                                    protected String snRangeStop;
 
                                     
-                                    public byte getSNRangeStart() {
+                                    public String getSNRangeStart() {
                                         return snRangeStart;
                                     }
 
                                     
-                                    public void setSNRangeStart(byte value) {
+                                    public void setSNRangeStart(String value) {
                                         this.snRangeStart = value;
                                     }
 
                                     
-                                    public byte getSNRangeStop() {
+                                    public String getSNRangeStop() {
                                         return snRangeStop;
                                     }
 
                                     
-                                    public void setSNRangeStop(byte value) {
+                                    public void setSNRangeStop(String value) {
                                         this.snRangeStop = value;
                                     }
 
@@ -9990,7 +9990,7 @@ public class TADIGRAEXIR21 implements Serializable {
                                     @XmlElement(name = "Number", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                     protected String number;
                                     @XmlElement(name = "Location", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21")
-                                    protected byte location;
+                                    protected String location;
                                     @XmlElement(name = "Comments", namespace = "https://infocentre.gsm.org/TADIG-RAEX-IR21", required = true)
                                     protected String comments;
 
@@ -10015,12 +10015,12 @@ public class TADIGRAEXIR21 implements Serializable {
                                     }
 
                                     
-                                    public byte getLocation() {
+                                    public String getLocation() {
                                         return location;
                                     }
 
                                     
-                                    public void setLocation(byte value) {
+                                    public void setLocation(String value) {
                                         this.location = value;
                                     }
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="tomcat-demo" default="war" basedir=".">
+	
+	<property name="property.file" value="build.properties" />
+	<property file="${property.file}" />
+	
+	<property name="project-name" value="${project.name}" />
+	<property name="builder" value="${project.builder}" />
+
+	<property name="war-file-name" value="${project.war.name}" />
+	<property name="source-directory" value="src" />
+	<property name="classes-directory" value="WebContent/WEB-INF/classes" />
+	<property name="web-directory" value="WebContent" />
+	<property name="web-xml-file" value="WebContent/WEB-INF/web.xml" />
+	<property name="build-directory" value="${project.war.path}" />
+	
+	
+  <target name="compile"  depends="">
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="src" destdir="WebContent/WEB-INF/classes" compiler="modern">
+    	<classpath>
+            <fileset dir="WebContent/WEB-INF/lib/">
+                <include name="*.jar" />
+            </fileset>
+            <fileset dir="${CATALINA.HOME}/lib">
+                <include name="*.jar" />
+            </fileset>
+        </classpath>
+    </javac>
+    
+  </target>
+
+	<target name="war" depends="compile">
+		<mkdir dir="${build-directory}" />
+		<delete file="${build-directory}/${war-file-name}" />
+		<war warfile="${build-directory}/${war-file-name}" webxml="${web-xml-file}">
+			<classes dir="${classes-directory}" />
+			<fileset dir="${web-directory}">
+				<!-- Need to exclude it since webxml is an attribute of the war tag above -->
+				<exclude name="WEB-INF/web.xml" />
+			</fileset>
+			<manifest>
+				<attribute name="Built-By" value="${builder}" />
+			</manifest>
+		</war>
+	</target>
+
+</project>

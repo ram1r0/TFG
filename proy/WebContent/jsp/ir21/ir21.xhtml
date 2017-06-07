@@ -12,6 +12,7 @@
 	
 	<f:metadata>
           <f:viewParam name="ir21"/>
+           <f:viewParam name="id" value="#{ir21Bean.id}"/>
           <f:event type="preRenderView" listener="#{ir21Bean.init}" />
     </f:metadata>
 	
@@ -21,7 +22,7 @@
 		
 		<p:messages showDetail="true"/>
 		
-		<h:form rendered="#{!ir21Bean.guardado}">
+		<h:form rendered="#{!ir21Bean.guardado and !ir21Bean.eliminado}">
 		
 			<p:commandButton ajax="false" action="#{ir21Bean.guardarIR21}" includeViewParams="true" value="Guardar">
 			</p:commandButton>
@@ -30,14 +31,12 @@
 		
 		<h:form rendered="#{ir21Bean.guardado}">
 			
-			<p:commandButton ajax="false" icon="ui-icon-close" action="#{ir21Bean.guardarIR21}" includeViewParams="true" value="Eliminar">
+			<p:commandButton ajax="false" icon="ui-icon-close" action="#{ir21Bean.eliminarIR21}" includeViewParams="true" value="Eliminar">
 			</p:commandButton>
 			
-			<p:commandButton ajax="false" icon="ui-icon-arrowthickstop-1-s" action="#{ir21Bean.guardarIR21}" includeViewParams="true" value="Descargar">
-			</p:commandButton>
-			
-			<p:commandButton ajax="false" icon="ui-icon-folder-open" action="#{ir21Bean.guardarIR21}" includeViewParams="true" value="Exportar">
-			</p:commandButton>
+			<p:button icon="ui-icon-arrowthickstop-1-s" value="Descargar" href="/descarga.jsf?t=xml&amp;id=#{ir21Bean.id}"></p:button>
+	
+			<p:button icon="ui-icon-folder-open" value="Exportar" href="/descarga.jsf?id=#{ir21Bean.id}"></p:button>
 		
 		</h:form>
 		
@@ -140,6 +139,8 @@
 					<c:forEach var="rangeData" items="#{network.networkData.routingInfoSection.CCITTE164NumberSeries.MSISDNNumberRanges.rangeData}">
 						
 						<tr>
+							<td>
+							</td>
 							<td>
 								<h:outputText value="#{rangeData.numberRange.CC}"/>
 							</td>

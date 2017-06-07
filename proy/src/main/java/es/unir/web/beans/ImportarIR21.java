@@ -15,11 +15,11 @@ import es.unir.web.dao.RepositorioDAO;
 import es.unir.web.dao.ServicioIR21DAO;
 import es.unir.web.utils.Utils;
 
-public class NuevoIR21 {
+public class ImportarIR21 {
 
     private static final long serialVersionUID = 1135568330881088908L;
 
-    Logger log = Logger.getLogger(NuevoIR21.class);
+    Logger log = Logger.getLogger(ImportarIR21.class);
 
     private UploadedFile documento;
 

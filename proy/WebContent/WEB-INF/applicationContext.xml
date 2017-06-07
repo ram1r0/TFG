@@ -67,10 +67,6 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	
 
 	<!-- DAOs de negocio -->
-	<bean id="usuarioDAO" class="es.unir.web.dao.UsuarioDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
 	<bean id="repositorioDAO" class="es.unir.web.dao.RepositorioDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

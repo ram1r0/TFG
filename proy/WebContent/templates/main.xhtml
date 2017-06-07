@@ -30,13 +30,9 @@
 			
 			<ui:insert name="init"/>
 							
-			<!-- Pestanyas -->
 			<ui:include src="tabs.xhtml"/>
 			<!-- Fin pestanyas -->
 			
-			<ui:insert name="submenu"/>
-			
-			<ui:insert name="migas"/>
 		
 			<!-- Titulo -->
 			<div id="cabecera-titulo">
@@ -64,17 +60,5 @@
 	</h:body>
 	
 	
-
-	<script type="text/javascript">
-	function fwelcome(){
-		if(typeof welcome != "undefined"){
-			PF('welcome').show();
-		}
-	}
-	
-	$( document ).ready(function() {
-		fwelcome();
-		});
-	</script>	
 </f:view>
 </html>

@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import es.unir.web.dao.UsuarioDAO;
-import es.unir.web.dto.UsuarioDTO;
 import es.unir.web.utils.Utils;
 
 public class LoginBean {
@@ -19,8 +17,6 @@ public class LoginBean {
 	private static final long serialVersionUID = 1135568330881088908L;
 
 	Logger log = Logger.getLogger(LoginBean.class);
-
-	private UsuarioDAO usuarioDAO;
 
 	private String usuario, clave;
 
@@ -81,12 +77,5 @@ public class LoginBean {
 		this.clave = clave;
 	}
 
-	public UsuarioDAO getUsuarioDAO() {
-		return usuarioDAO;
-	}
-
-	public void setUsuarioDAO(UsuarioDAO usuarioDAO) {
-		this.usuarioDAO = usuarioDAO;
-	}
 
 }

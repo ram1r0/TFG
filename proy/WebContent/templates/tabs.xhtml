@@ -22,7 +22,7 @@
                      <li><h:outputLink value="/proy/jsp/ir21/buscar.jsf">Búsqueda</h:outputLink>
                     </li>  
 	                <li>  
-	                    <h:outputLink rendered="#{sessionBean.usuario != null}" id="loginLink" value="javascript:void(0)" onclick="PF('dlg').show()" title="login">   
+	                    <h:outputLink rendered="#{sessionBean.usuario != null}" id="loginLink" value="javascript:void(0)" onclick="window.location.replace('../../../proy/logout');" title="Logout">   
 					        Logout 
 					    </h:outputLink>
 					    

@@ -1,5 +1,7 @@
 package es.unir.web.dao;
 
+import https.infocentre_gsm_org.tadig_raex_ir21.TADIGRAEXIR21;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -20,6 +22,7 @@ import org.springframework.util.StringUtils;
 
 import es.unir.web.dto.IR21DTO;
 import es.unir.web.utils.Constantes;
+import es.unir.web.utils.PDFUtils;
 import es.unir.web.utils.Utils;
 
 public class RepositorioDAO implements Serializable {
@@ -34,7 +37,7 @@ public class RepositorioDAO implements Serializable {
 	hibernateTemplate = new HibernateTemplate(sessionFactory);
     }
 
-    public void saveIR21(String nombre, byte[] fichero, String operadora, String pais, boolean tmp) throws Exception {
+    public Long saveIR21(String nombre, byte[] fichero, String operadora, String pais, boolean tmp) throws Exception {
 	FileOutputStream fos = null;
 
 	try {
@@ -71,17 +74,59 @@ public class RepositorioDAO implements Serializable {
 	    ir21.setPais(pais);
 	    ir21.setFechaModificacion(new Date());
 
-	    hibernateTemplate.merge(ir21);
-
+	    IR21DTO merge = hibernateTemplate.merge(ir21);
+	    return merge.getId();
 	}
+	return 0L;
+    }
+
+    public int eliminarIR21(int id) {
+
+	IR21DTO ir21 = getIR21(id);
+	hibernateTemplate.delete(ir21);
+	// XML
+	String xml = Utils.getPropiedad(Constantes.REPO_DIR) + File.separator + ir21.getFichero();
+	File f = new File(xml);
+	if (f.exists()) {
+	    f.delete();
+	}
+
+	String pdf = Utils.getPropiedad(Constantes.REPO_DIR) + File.separator + ir21.getFichero().replace("xml", "pdf");
+	File f2 = new File(pdf);
+	if (f2.exists()) {
+	    f2.delete();
+	}
+
+	return 0;
+
+    }
+
+    public String getPDF(TADIGRAEXIR21 ir21t, int id) {
+	IR21DTO ir21 = getIR21(id);
+	String path = Utils.getPropiedad(Constantes.REPO_DIR) + File.separator + ir21.getFichero().replace("xml", "pdf");
+	File f = new File(path);
+	if (!f.exists()) {
+	    PDFUtils.exportarPDF(ir21t, path);
+	}
+	return path;
+    }
+
+    public String getPDF(int id) {
+	IR21DTO ir21 = getIR21(id);
+	String path = Utils.getPropiedad(Constantes.REPO_DIR) + File.separator + ir21.getFichero().replace("xml", "pdf");
+	File f = new File(path);
+	if (!f.exists()) {
+	    return null;
+	}
+	return path;
     }
 
     public String getIR21(String nombre) {
 	return Utils.getPropiedad(Constantes.REPO_DIR) + File.separator + nombre;
     }
-    
+
     public IR21DTO getIR21(int id) {
-	
+
 	Long a = Long.valueOf(id);
 	return hibernateTemplate.get(IR21DTO.class, a);
     }
@@ -106,7 +151,7 @@ public class RepositorioDAO implements Serializable {
 	if (operadora != null && StringUtils.hasText(operadora)) {
 	    criteria.add(Restrictions.like("operadora", operadora, MatchMode.ANYWHERE));
 	}
-	
+
 	criteria.addOrder(Order.asc("pais"));
 
 	criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);

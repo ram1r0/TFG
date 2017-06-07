@@ -26,21 +26,25 @@ public class Ir21Bean {
     public String pais;
     public String ir21;
     public boolean guardado;
+    public String id;
+    
+    public boolean eliminado = false;
 
     public void init() {
-	
+
 	if (Utils.getReqParam("id") != null && StringUtils.hasText((String) Utils.getReqParam("id"))) {
 	    guardado = true;
+	    eliminado = false;
 	    
-	    Integer id = Integer.valueOf(""+Utils.getReqParam("id"));
-	    
+	    Integer id = Integer.valueOf("" + Utils.getReqParam("id"));
+
 	    IR21DTO ir21 = getRepositorioDAO().getIR21(id);
-	    if(ir21 ==null){
+	    if (ir21 == null) {
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "No se encuentra el documento.", "");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	    } else {
 		String dir = getRepositorioDAO().getIR21(ir21.getFichero());
-		if(dir == null){
+		if (dir == null) {
 		    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "No se encuentra el documento.", "");
 		    FacesContext.getCurrentInstance().addMessage(null, msg);
 		} else {
@@ -54,10 +58,11 @@ public class Ir21Bean {
 		    }
 		}
 	    }
-	
+
 	}
-	    
+
 	else if (Utils.getReqParam("ir21") != null && StringUtils.hasText((String) Utils.getReqParam("ir21"))) {
+	    eliminado = false;
 	    ir21 = (String) Utils.getReqAttribute("ir21");
 	    String ruta = repositorioDAO.getIR21(ir21);
 
@@ -65,6 +70,7 @@ public class Ir21Bean {
 
 		guardado = Boolean.valueOf((String) Utils.getReqParam("ir21"));
 	    }
+	    
 
 	    operadora = (String) Utils.getReqParam("operadora");
 	    pais = (String) Utils.getReqParam("pais");
@@ -90,24 +96,33 @@ public class Ir21Bean {
 	}
     }
 
+    public void eliminarIR21() {
+	repositorioDAO.eliminarIR21(Integer.valueOf(getId()));
+
+	FacesMessage msg = new FacesMessage("El documento se ha eliminado correctamente.", "");
+	FacesContext.getCurrentInstance().addMessage(null, msg);
+	eliminado = true;
+	guardado = false;
+    }
+
     public void guardarIR21() {
 
 	try {
-	    repositorioDAO.saveIR21(getIr21(), null, getOperadora(), getPais(), false);
+	    Long id = repositorioDAO.saveIR21(getIr21(), null, getOperadora(), getPais(), false);
 
 	    setIr21(null);
+
+	    setId("" + id);
 
 	    FacesMessage msg = new FacesMessage("El documento se ha guardado correctamente", "");
 	    FacesContext.getCurrentInstance().addMessage(null, msg);
 	    guardado = true;
 	} catch (Exception e) {
-
 	    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Se ha producido un error al guardar el documento", "");
 	    FacesContext.getCurrentInstance().addMessage(null, msg);
 
 	    log.error(e.getMessage(), e);
 	    e.printStackTrace();
-
 	}
 
     }
@@ -169,5 +184,21 @@ public class Ir21Bean {
 
     public void setGuardado(boolean guardado) {
 	this.guardado = guardado;
+    }
+
+    public String getId() {
+	return id;
+    }
+
+    public void setId(String id) {
+	this.id = id;
+    }
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
     }
 }

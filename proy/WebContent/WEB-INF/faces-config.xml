@@ -18,10 +18,6 @@
 		<managed-bean-name>loginBean</managed-bean-name>
 		<managed-bean-class>es.unir.web.beans.LoginBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
-		<managed-property>
-			<property-name>usuarioDAO</property-name>
-			<value>#{usuarioDAO}</value>
-		</managed-property>
 	</managed-bean>
 	
 	<managed-bean>
@@ -64,7 +60,7 @@
 	
 	<managed-bean>
 		<managed-bean-name>nuevoIR21Bean</managed-bean-name>
-		<managed-bean-class>es.unir.web.beans.NuevoIR21</managed-bean-class>
+		<managed-bean-class>es.unir.web.beans.ImportarIR21</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
 			<property-name>repositorioDAO</property-name>
